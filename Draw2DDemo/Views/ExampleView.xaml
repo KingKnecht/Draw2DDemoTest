@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Draw2DDemo.Views.ExampleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Draw2DDemo.Views"
+             xmlns:draw2DControlLibrary="clr-namespace:Draw2DControlLibrary;assembly=Draw2DControlLibrary"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--<draw2DControlLibrary:Draw2DControl 
+            Canvas="{Binding Canvas}" 
+            x:Name="Draw2DControl"
+            WorldMousePosX="{Binding WorldMousePosX, Mode=TwoWay}"
+            WorldMousePosY="{Binding WorldMousePosY, Mode=TwoWay}"
+            RenderedItemsCount="{Binding RenderedItemsCount, Mode=TwoWay}"
+            Margin="4"
+            Background="WhiteSmoke"/>-->
+
+        <ScrollViewer x:Name="scroller" CanContentScroll="True" HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto">
+
+            <draw2DControlLibrary:ZoomAndPanControl x:Name="zoomAndPanControl" MinimumZoom="0.0001"
+                                          FitCommandDepProp="{Binding FitCommand, Mode=OneWayToSource}"
+                                          FillCommandDepProp="{Binding FillCommand, Mode=OneWayToSource}"
+                                          OneHundredPercentCommandDepProp="{Binding OneHundredPercentCommand, Mode=OneWayToSource}"
+                                          ZoomInCommandDepProp="{Binding ZoomInCommand, Mode=OneWayToSource}"
+                                          ZoomOutCommandDepProp="{Binding ZoomOutCommand, Mode=OneWayToSource}"
+                                          UndoZoomCommandDepProp="{Binding UndoZoomCommand, Mode=OneWayToSource}"
+                                          RedoZoomCommandDepProp="{Binding  RedoZoomCommand, Mode=OneWayToSource}">
+                 
+                <draw2DControlLibrary:Draw2DControl 
+                    Canvas="{Binding Canvas}" 
+                    x:Name="Draw2DControl"
+                    WorldMousePosX="{Binding WorldMousePosX, Mode=TwoWay}"
+                    WorldMousePosY="{Binding WorldMousePosY, Mode=TwoWay}"
+                    RenderedItemsCount="{Binding RenderedItemsCount, Mode=TwoWay}"
+                    Margin="4"
+                    Background="WhiteSmoke"
+                    ViewportWidth="{Binding ElementName=zoomAndPanControl,Path=ContentViewportWidth, Mode=TwoWay}"
+                    ViewportHeight="{Binding ElementName=zoomAndPanControl,Path=ContentViewportHeight, Mode=TwoWay}"
+                    ContentOffsetX ="{Binding ElementName=zoomAndPanControl,Path=ContentOffsetX, Mode=TwoWay}"
+                    ContentOffsetY="{Binding ElementName=zoomAndPanControl,Path=ContentOffsetY, Mode=TwoWay}"
+                    
+                    />   
+                
+            </draw2DControlLibrary:ZoomAndPanControl>
+            
+        </ScrollViewer>
+        <Grid Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock>Viewport:</TextBlock>
+                <TextBlock Margin="5 0 0 0" Text="{Binding ElementName=Draw2DControl, Path=ContentOffsetX, StringFormat=N2}" />
+                <TextBlock>/</TextBlock>
+                <TextBlock Text="{Binding ElementName=Draw2DControl, Path=ContentOffsetY, StringFormat=N2}" />
+                <TextBlock> ,w:</TextBlock>
+                <TextBlock Text="{Binding ElementName=Draw2DControl, Path=ViewportWidth, StringFormat=N2}" />
+                <TextBlock> ,h:</TextBlock>
+                <TextBlock Text="{Binding ElementName=Draw2DControl, Path=ViewportHeight, StringFormat=N2}" />
+            </StackPanel>
+           </Grid>
+    </Grid>
+</UserControl>
+

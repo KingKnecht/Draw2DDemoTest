@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Draw2DDemo.Views.DebugInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Draw2DDemo.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" IsHitTestVisible="False">
+    <Grid MinWidth="300">
+        <Border  BorderThickness="4" Padding="5" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock>WorldMousePos:</TextBlock>
+                    <TextBlock Margin="5 0 0 0" Text="{Binding ExampleViewModel.WorldMousePosX}" />
+                    <TextBlock>/</TextBlock>
+                    <TextBlock Text="{Binding  ExampleViewModel.WorldMousePosY}" />
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock>Rendered items#:</TextBlock>
+                    <TextBlock  Margin="5 0 0 0" Text="{Binding ExampleViewModel.RenderedItemsCount}" />
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <TextBlock>Selected items#:</TextBlock>
+                    <TextBlock  Margin="5 0 0 0" Text="{Binding ExampleViewModel.SelectionCount}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

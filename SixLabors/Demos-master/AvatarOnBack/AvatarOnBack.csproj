@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Backgrounds\" />
+    <Folder Include="Avatars\" />
+    <Folder Include="fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ImageSharp" Version="1.0.0-alpha9-00139" />
+    <PackageReference Include="ImageSharp.Drawing" Version="1.0.0-alpha9-00134" />
+  </ItemGroup>
+
+</Project>

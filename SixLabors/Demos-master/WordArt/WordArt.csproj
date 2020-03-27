@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ImageSharp" Version="1.0.0-alpha6-00065" />
+    <PackageReference Include="ImageSharp.Drawing" Version="1.0.0-alpha6-00026" />
+    <PackageReference Include="SixLabors.Fonts" Version="0.1.0-alpha0016" />
+    <PackageReference Include="SixLabors.Shapes" Version="0.1.0-alpha0019" />
+  </ItemGroup>
+
+</Project>

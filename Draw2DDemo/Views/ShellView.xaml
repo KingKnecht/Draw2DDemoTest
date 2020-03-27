@@ -1,0 +1,112 @@
+﻿<fluent:RibbonWindow x:Class="Draw2DDemo.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:views="clr-namespace:Draw2DDemo.Views"
+        xmlns:fluent="urn:fluent-ribbon"
+        mc:Ignorable="d"
+        Title="ShellView" Height="800" Width="1200" x:Name="MainWindow">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding DeleteCommand}" Key="Delete"/>
+        <KeyBinding Command="{Binding DeleteCommand}" Key="Back"/>
+    </Window.InputBindings>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <fluent:Ribbon>
+            <!--Tabs-->
+            <fluent:RibbonTabItem Header="Editing">
+                <fluent:RibbonGroupBox Header="Edit">
+                    <fluent:Button x:Name="DeleteButton" Command="{Binding DeleteCommand}" Header="Delete" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png"/>
+                    <fluent:Button x:Name="CopyButton"  Header="Copy" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png"/>
+                    <fluent:Button x:Name="PasteButton"  Header="Paste" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png"/>
+                    <fluent:Button x:Name="CutButton"  Header="Cut" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png"/>
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Graphic Tools">
+                    <fluent:Button x:Name="CreateLineButton" Command="{Binding CreateLineCommand}" Header="Line" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png"/>
+                    <fluent:Button Name="CreatePolylineButton" Command="{Binding CreatePolylineCommand}" Header="Polyline" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" />
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Connections">
+                    <fluent:Button Name="directConnection" Header="Direct" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" />
+                    <fluent:Button Name="orthoConnection" Header="Orthogonal" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <fluent:RibbonTabItem Header="View">
+                <fluent:RibbonGroupBox Header="Viewport">
+                    <fluent:Button x:Name="FitButton" Command="{Binding FitCommand}" Header="Fit View"/>
+                    <fluent:Button x:Name="FillButton" Command="{Binding FillCommand}" Header="Fill View"/>
+                    <fluent:Button x:Name="OneHundredPercentButton" Command="{Binding OneHundredPercentCommand}" Header="100% View"/>
+                    <fluent:Button x:Name="ZoomInButton" Command="{Binding ZoomInCommand}" Header="Zoom In"/>
+                    <fluent:Button x:Name="ZoomOutButton" Command="{Binding ZoomOutCommand}" Header="Zoom Out"/>
+                    <!--<fluent:Button x:Name="UndoZoomButton" Command="{Binding UndoZoomCommand}" Header="Undo Zoom"/>
+                    <fluent:Button x:Name="RedoZoomButton" Command="{Binding RedoZoomCommand}" Header="Redo Zoom"/>-->
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <fluent:RibbonTabItem Header="Snapping">
+                <fluent:RibbonGroupBox Header="Grid Snapping">
+                    <fluent:ToggleButton x:Name="EnableGridSnap" Command="{Binding ToggleGridSnapCommand}" Header="Grid Snap"/>
+                    <fluent:Spinner x:Name="GridUnitX" Value="{Binding GridUnitX}" Header="Unit X" Margin="4"/>
+                    <fluent:Spinner x:Name="GridUnitY" Value="{Binding GridUnitY}" Header="Unit Y"  Margin="4"/>
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Element Snapping">
+                    <fluent:ToggleButton x:Name="EnableElementSnap" Command="{Binding ToggleElementSnapCommand}" Header="Element Snap" IsChecked="{Binding IsElementSnapChecked}"/>
+                    <!--<fluent:ToggleButton x:Name="EnableCornerSnap" Command="{Binding ToggleCornerSnapCommand}" Header="Snap to Corners" IsEnabled="{Binding ElementName=EnableElementSnap, Path=IsChecked}"/>
+                    <fluent:ToggleButton x:Name="EnableMidPointSnap" Command="{Binding EnableMidPointSnapCommand}" Header="Snap to Mid" IsEnabled="{Binding ElementName=EnableElementSnap, Path=IsChecked}"/>
+                    <fluent:ToggleButton x:Name="EnableCenterSnap" Command="{Binding EnableCenterSnapCommand}" Header="Snap to Center" IsEnabled="{Binding ElementName=EnableElementSnap, Path=IsChecked}"/>-->
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+        </fluent:Ribbon>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <ContentControl Name="NavigationViewModel" Margin="8"/>
+
+            <!--Our drawing canvas will be injected here -->
+            <ContentControl Grid.Column="1" x:Name="ExampleViewModel"  Margin="8"/>
+
+            <views:DebugInfoView Margin="30" Grid.Column="1"
+                                 Background="LightBlue" Opacity="0.9"
+                                 MinWidth="100" MinHeight="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        </Grid>
+
+        <fluent:StatusBar Grid.Row="2">
+            <fluent:StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </fluent:StatusBar.ItemsPanel>
+
+            <fluent:StatusBarItem HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="statusBarText">Memory usage:</TextBlock>
+                    <TextBlock x:Name="memoryUsage" Margin="4 0 0 0" Text="{Binding MemoryUsage}"/>
+                    <TextBlock >MB</TextBlock>
+                </StackPanel>
+            </fluent:StatusBarItem>
+
+
+        </fluent:StatusBar>
+
+    </Grid>
+</fluent:RibbonWindow>
+

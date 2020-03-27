@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0176CD8E-8951-47EC-A109-B0F0A23A3DF3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Draw2D.Core</RootNamespace>
+    <AssemblyName>Draw2D.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QuickGraph, Version=3.6.61114.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Data, Version=3.6.61114.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Graphviz, Version=3.6.61114.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Graphviz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Supercluster.KDTree, Version=1.0.3.0, Culture=neutral, PublicKeyToken=4423da5f8ba350cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\Supercluster.KDTree.1.0.3\lib\Supercluster.KDTree.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CoordinateSystems\ICoordinateSystem.cs" />
+    <Compile Include="EmptyGrid.cs" />
+    <Compile Include="Geo\Point.cs" />
+    <Compile Include="Geo\Rectangle.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\CommandMove.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="ConnectionGraphVertex.cs" />
+    <Compile Include="Constants\Enums.cs" />
+    <Compile Include="CoordinateSystem.cs" />
+    <Compile Include="Factories\Handles\HandleShapeFactory.cs" />
+    <Compile Include="Figure.cs" />
+    <Compile Include="Geo\LineFunctions.cs" />
+    <Compile Include="Canvas.cs" />
+    <Compile Include="Handles\HandleFactory.cs" />
+    <Compile Include="ICanvas.cs" />
+    <Compile Include="IGrid.cs" />
+    <Compile Include="Layout\ConnectionAnchor.cs" />
+    <Compile Include="Layout\Connection\ConnectionRouter.cs" />
+    <Compile Include="Layout\Connection\ToolBase.cs" />
+    <Compile Include="Policies\IDimensionsAware.cs" />
+    <Compile Include="Policies\ISelectionAware.cs" />
+    <Compile Include="Policies\CanvasPolicy\MultiSelectFeedbackPolicy.cs" />
+    <Compile Include="Policies\RouterPolicy\GraphTool.cs" />
+    <Compile Include="Policies\RouterPolicy\GuideLineFilter.cs" />
+    <Compile Include="Policies\RouterPolicy\GuideLineFilterItem.cs" />
+    <Compile Include="Policies\RouterPolicy\LineTool.cs" />
+    <Compile Include="Policies\RouterPolicy\SnapElementPolicy.cs" />
+    <Compile Include="Policies\RouterPolicy\SnapGridPolicy.cs" />
+    <Compile Include="Policies\RouterPolicy\OrthogonalConnectionRouter.cs" />
+    <Compile Include="Layout\Locator.cs" />
+    <Compile Include="Policies\CanvasPolicy\BoundingBoxSelectionPolicy.cs" />
+    <Compile Include="Policies\CanvasPolicy\CanvasPolicy.cs" />
+    <Compile Include="Policies\CanvasPolicy\KeyboardPolicy.cs" />
+    <Compile Include="Policies\IMouseAware.cs" />
+    <Compile Include="Policies\FigurePolicy\AdjustPositionResult.cs" />
+    <Compile Include="Policies\FigurePolicy\AdjustSizeResult.cs" />
+    <Compile Include="Policies\FigurePolicy\DragDropEditPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\FollowMasterResizePolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\FollowSelectionChangedPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\DirectionDragDropPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\InformSelectionChangedPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\IRegionAwarePolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\MasterResizePolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\MasterSlaveDragDropPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\RegionDragDropEditPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\ResizeMasterPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\ResizeMasterPolicyBase.cs" />
+    <Compile Include="Policies\FigurePolicy\SelectionFeedbackPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\SetSizePolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\SlaveMasterDragDropFeedbackPolicy.cs" />
+    <Compile Include="Policies\FigurePolicy\SlaveSelectionFeedbackPolicy.cs" />
+    <Compile Include="Policies\PolicyBase.cs" />
+    <Compile Include="Policies\CanvasPolicy\SelectionPolicy.cs" />
+    <Compile Include="Policies\CanvasPolicy\SingleSelectionPolicy.cs" />
+    <Compile Include="Policies\RouterPolicy\PolylineTool.cs" />
+    <Compile Include="Policies\RouterPolicy\TargetInfo.cs" />
+    <Compile Include="Port.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Handles\ResizeHandle.cs" />
+    <Compile Include="Selection.cs" />
+    <Compile Include="Shapes\Basic\BoxedText.cs" />
+    <Compile Include="Shapes\Basic\Cross.cs" />
+    <Compile Include="Shapes\Basic\GlyphedText.cs" />
+    <Compile Include="Shapes\Basic\Graph.cs" />
+    <Compile Include="Handles\GraphVertexHandle.cs" />
+    <Compile Include="Shapes\Basic\Path.cs" />
+    <Compile Include="Shapes\Basic\Selectionbox.cs" />
+    <Compile Include="Shapes\Basic\Ellipse.cs" />
+    <Compile Include="Handles\IHandle.cs" />
+    <Compile Include="Shapes\Basic\Line.cs" />
+    <Compile Include="Handles\LineHandle.cs" />
+    <Compile Include="Shapes\Basic\PolyLine.cs" />
+    <Compile Include="Shapes\Basic\Rectangle.cs" />
+    <Compile Include="Shapes\Composites\Composite.cs" />
+    <Compile Include="Shapes\FigureExtensions\FigureExtensions.cs" />
+    <Compile Include="Shapes\FigureExtensions\LineExtensions.cs" />
+    <Compile Include="Utlils\SnapCluster.cs" />
+    <Compile Include="Utlils\ChildCollection.cs" />
+    <Compile Include="Utlils\DoubleExtensions.cs" />
+    <Compile Include="Utlils\Linq\LinqExtensions.cs" />
+    <Compile Include="Utlils\Color.cs" />
+    <Compile Include="Utlils\QuadTree\QuadTree.cs" />
+    <Compile Include="Utlils\QuadTree\QuadTreeNode.cs" />
+    <Compile Include="VectorFigure.cs" />
+    <Compile Include="ZorderComparer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shapes\ExternStyled\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SixLabors\Core\src\SixLabors.Core\SixLabors.Core.csproj">
+      <Project>{09e744ec-4852-4fc7-be78-c1b399f17967}</Project>
+      <Name>SixLabors.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SixLabors\Shapes\src\SixLabors.Shapes\SixLabors.Shapes.csproj">
+      <Project>{a18a9390-7bf4-482e-bc10-36dce4bec7e4}</Project>
+      <Name>SixLabors.Shapes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
